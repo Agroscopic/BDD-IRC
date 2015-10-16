@@ -1,0 +1,12 @@
+{% extends "AppBundle::Base.html.twig" %}
+{% block title %}{% endblock %}
+
+{% block extraheadcontent %}
+{% endblock %}
+{% block menus %}
+{% endblock %}
+
+
+{% block pagecontent %}
+{{ render(controller('FOSUserBundle:Security:login')) }}
+{% endblock %}

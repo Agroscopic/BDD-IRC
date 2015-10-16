@@ -5,8 +5,8 @@
                     <h5>Connexion</h5>
                 </div>
                 <div class="ibox-content">
-                  <form action="{# path("fos_user_security_check") #}" method="post" class="m-t" role="form">
-                         <input type="hidden" name="_csrf_token" value="{# csrf_token #}"/>
+                  <form action="{{ path("fos_user_security_check") }} " method="post" class="m-t" role="form">
+                         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
                          <div class="form-group">
                              <label for="username">Identifiant</label>
 
@@ -32,8 +32,9 @@
                                  <input type="submit" id="_submit" name="_submit" class="btn btn-primary block full-width m-b"
                                         value="Valider"/>
                          </div>
+                         {{ form_rest(form) }}
                           <div class="form-group control-group" style="text-align: right;">
-                                 <a href="{# path('fos_user_resetting_request') #}">Mot de passe oublié ?</a>
+                                 <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
                          </div>
                      </form>
 

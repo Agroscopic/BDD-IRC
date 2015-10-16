@@ -1,0 +1,54 @@
+<?php
+// src/AppBundle/Entity/User.php
+
+namespace AppBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Address", type="text")
+     */
+    protected $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Phone", type="text")
+     */
+    protected $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Spe_IRC", type="text")
+     */
+    protected $spe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Annee_sortie", type="date")
+     */
+    protected $annee;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+}

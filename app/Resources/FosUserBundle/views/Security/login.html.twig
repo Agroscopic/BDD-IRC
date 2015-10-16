@@ -1,0 +1,57 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="col-lg-4 col-lg-offset-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Se connecter</h5>
+                </div>
+            <div class="ibox-content">
+              {% if error %}
+                  <div class="alert alert-danger alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                  {{ error.messageKey|trans(error.messageData, 'security') }}</div>
+              {% endif %}
+
+              {% if app.request.hasPreviousSession %}
+                  {% for type, messages in app.session.flashbag.all() %}
+                      {% for message in messages %}
+                          <div class="flash-{{ type }}">
+                              {{ message }}
+                          </div>
+                      {% endfor %}
+                  {% endfor %}
+              {% endif %}
+
+                 <form action="{{ path("fos_user_security_check") }}" method="post" class="m-t" role="form">
+                   <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                        <div class="form-group">
+                            <label for="username">{{ 'security.login.username'|trans }}</label>
+                            <input type="text" class="form-control" id="username"  name="_username" value="{{ last_username }}" required="required"/>
+                        </div>
+
+                        <div class="form-group control-group">
+                            <label for="password">{{ 'security.login.password'|trans }}</label>
+                            <input type="password" class="form-control" id="password" name="_password" required="required"/>
+                        </div>
+
+                        <div class="form-group" style="text-align: left;">
+                                <div class="checkbox control-group">
+                                    <label for="remember_me">
+                                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                                        {{ 'security.login.remember_me'|trans }}
+                                    </label>
+                                </div>
+
+                        </div>
+
+                        <div class="form-group">
+                                <input type="submit" id="_submit" name="_submit" class="btn btn-primary block full-width m-b"
+                                       value="{{ 'security.login.submit'|trans }}"/>
+                        </div>
+                         <div class="form-group control-group" style="text-align: right;">
+                                <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
+                        </div>
+                    </form>
+            </div>
+            </div>
+        </div>
